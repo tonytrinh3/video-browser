@@ -1,15 +1,19 @@
 import React from 'react';
 
 class SearchBar extends React.Component{
-    state = {term: ''};
+    state = {term: '' };
 
     onInputChange = (event) =>{
-        console.log(event.target.value)
-        this.setState({term: event.target.event})
+        console.log(event.target.value);
+        this.setState({term: event.target.value})
+  
     }
 
     onFormSubmit = event =>{
         event.preventDefault();
+
+        //so our parent component gets told what the current search term is 
+        this.props.onFormSubmit(this.state.term);
 
 
     }
