@@ -5,7 +5,7 @@ import VideoList from './VideoList';
 
 
 class App extends Component {
-  state = { videos: []};
+  state = { videos: [], selectedVideo: null};
 
 
   onTermSubmit = async (term) =>{
@@ -19,13 +19,17 @@ class App extends Component {
     this.setState({videos: response.data.items});
   };
 
+  //call back function...
+  onVideoSelect = (video) =>{
+    console.log('From the App!', video);
+  }
 
 
   render() {
     return (
       <div className = 'ui container'>
         <SearchBar onFormSubmit = {this.onTermSubmit}/>
-        <VideoList videos ={this.state.videos}/>
+        <VideoList onVideoSelect = {this.onVideoSelect} videos ={this.state.videos}/>
 
       </div>
     );
